@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'rmvc'
+if (ARGV.length == 0) then
+  RMVC::Interface.startup("none")
+else
+  RMVC::Interface.startup(ARGV)
+end
