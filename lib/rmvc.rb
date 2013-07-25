@@ -190,34 +190,34 @@ module RMVC
     # Helper for creating a controller
     def self.createController(controllerName)
       controllerCap = controllerName.capitalize
-        "require './app/models/#{controllerName}'\n
-require './app/views/#{controllerName}'\n
-class #{controllerCap}Controller\n
+        "require './app/models/#{controllerName}'
+require './app/views/#{controllerName}'
+class #{controllerCap}Controller
   class << self
-    #Add your variables here!\n
-    attr_accessor :name\n
-  end\n
-  @name = \"James!\"\n
-  def self.main\n
-     #{controllerCap}View.load\n
-  end\n
+    #Add your variables here!
+    attr_accessor :name
+  end
+  @name = \"James!\"
+  def self.main
+     #{controllerCap}View.load
+  end
 end\n"
     end
   # Helper for creating a view
     def self.createView(viewName, controllerName)
       viewCap = viewName.capitalize
-"require './app/controllers/#{controllerName}_controller'\n
-class #{viewCap}View\n
-def self.load\n
-puts \"Hello, hello!\"\n
-end\n
+"require './app/controllers/#{controllerName}_controller'
+class #{viewCap}View
+def self.load
+puts \"Hello, hello!\"
+end
 end\n"
     end
 
   # Helper for creating a model
     def self.createModel(modelName)
-"require './app/controllers/#{modelName}_controller'\n
-class #{modelName.capitalize}Model\n
+"require './app/controllers/#{modelName}_controller'
+class #{modelName.capitalize}Model
 end\n"
     end
   end
