@@ -208,9 +208,9 @@ end\n"
       viewCap = viewName.capitalize
 "require './app/controllers/#{controllerName}_controller'
 class #{viewCap}View
-def self.load
-puts \"Hello, hello!\"
-end
+  def self.load
+    puts \"Hello, hello!\"
+  end
 end\n"
     end
 
