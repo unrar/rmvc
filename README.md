@@ -1,4 +1,4 @@
-Ruby MVC
+Ruby MVC [![Gem Version](https://badge.fury.io/rb/rmvc.png)](http://badge.fury.io/rb/rmvc)
 -------
 Ruby MVC (`rmvc`) is a gem to help you use the MVC (Model-View-Controller) architecture in all your Ruby applications. It's not limited to web applications like Rails! In fact, it's like a *Rails without Rack*.
 
