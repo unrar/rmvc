@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>RMVC by unrar</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>RMVC</h1>
+        <h2>Ruby MVC - Use Model-View-Controller architecture in a non-rails application!</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/unrar/rmvc/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/unrar/rmvc/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/unrar/rmvc" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h2>
+<a name="ruby-mvc" class="anchor" href="#ruby-mvc"><span class="octicon octicon-link"></span></a>Ruby MVC</h2>
+
+<p>Ruby MVC (<code>rmvc</code>) is a gem to help you use the MVC (Model-View-Controller) architecture in all your Ruby applications. It's not limited to web applications like Rails! In fact, it's like a <em>Rails without Rack</em>.</p>
+
+<h1>
+<a name="get-rmvc" class="anchor" href="#get-rmvc"><span class="octicon octicon-link"></span></a>Get RMVC</h1>
+
+<p>It's an official gem now! If you want the last available gem, run this:</p>
+
+<pre><code>$ gem install rmvc
+</code></pre>
+
+<p>Depending on your setup, you might have to prefix the command with <code>sudo</code>.</p>
+
+<p>If you want the last version and the gem isn't updated (look at the top of the README to know what version the gem is), just download the sources from GitHub:</p>
+
+<pre><code>$ git init
+$ git clone https://github.com/unrar/rmvc.git
+</code></pre>
+
+<p>Now install the gem:</p>
+
+<pre><code>$ gem install rmvc-x.x.x.gem
+</code></pre>
+
+<h3>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>The only dependency of RMVC is <a href="https://rubygems.org/gems/colorize">colorize</a>. Rubygems should automatically install colorize for you.</p>
+
+<h1>
+<a name="create-a-project" class="anchor" href="#create-a-project"><span class="octicon octicon-link"></span></a>Create a project</h1>
+
+<p>RMVC is made to be friendly to Rails developers. So, as you can guess, the only command you need to run to create 
+a new project is <code>new</code>:</p>
+
+<pre><code>$ rmvc new ProjectName
+</code></pre>
+
+<p>This will create all the needed files in the <code>ProjectName</code> subdirectory.
+It will create a structure like the following:</p>
+
+<pre><code>ProjectName/
+  app/
+    controllers/
+      default_controller.rb
+    models/
+      default.rb
+    views/
+      main.rb
+ProjectName.rb
+</code></pre>
+
+<p>The file the user will run is <code>ProjectName.rb</code>. It has a very simple content.</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'./app/controllers/default_controller'</span>
+<span class="no">DefaultController</span><span class="o">.</span><span class="n">main</span>
+</pre></div>
+
+<p>The controller, which is the file that, obviously, <strong>controls</strong> everything, contains this by default:</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'./app/models/default'</span>
+<span class="nb">require</span> <span class="s1">'./app/views/main'</span>
+<span class="k">class</span> <span class="nc">DefaultController</span>
+  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+    <span class="c1"># Add your variables here!</span>
+    <span class="kp">attr_accessor</span> <span class="ss">:name</span>
+  <span class="k">end</span>
+  <span class="vi">@name</span> <span class="o">=</span> <span class="s2">"James!"</span>
+  <span class="k">def</span> <span class="nf">main</span>
+    <span class="no">MainView</span><span class="o">.</span><span class="n">load</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>And the contents of the view:</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'./app/controllers/default_controller'</span>
+<span class="k">class</span> <span class="nc">MainView</span>
+  <span class="k">def</span> <span class="nf">load</span>
+    <span class="nb">puts</span> <span class="s2">"Hello, hello {#DefaultController.name}!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The model is void by default, just a declaration of the class <code>SomethingModel</code>.</p>
+
+<h1>
+<a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h1>
+
+<p>It's very simple. This is basically what happens:</p>
+
+<ol>
+<li>The method <code>main</code> of <code>DefaultController</code> is invoked. </li>
+<li>The method <code>main</code> of <code>DefaultController</code>, following the conventions, invokes the view <code>main</code> (<code>MainView</code>), using the method <code>load</code> as the RMVC conventions say.</li>
+<li>The method <code>load</code> of the <code>MainView</code> shows a message through <code>puts</code>, using a variable declared at <code>DefaultController</code>.</li>
+</ol><h1>
+<a name="declaring-variables" class="anchor" href="#declaring-variables"><span class="octicon octicon-link"></span></a>Declaring Variables</h1>
+
+<p>It's very easy! Just add the variable at the <code>attr_accessor</code> statement of your controller:</p>
+
+<div class="highlight"><pre><span class="kp">attr_accessor</span> <span class="ss">:onevariable</span><span class="p">,</span> <span class="ss">:anothervariable</span><span class="p">,</span> <span class="ss">:myvariable</span>
+</pre></div>
+
+<p>And declare it using an instance variable (<code>@var</code>) after the <code>class &lt;&lt; self</code> block.</p>
+
+<div class="highlight"><pre><span class="k">end</span>
+<span class="vi">@onevariable</span><span class="p">,</span> <span class="vi">@anothervariable</span><span class="p">,</span> <span class="vi">@myvariable</span> <span class="o">=</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span>
+</pre></div>
+
+<p>This can sound stupid, but it's useful if you want to get data from a database and make it available for all the views under
+a controller (MVC rules!).</p>
+
+<h1>
+<a name="generating-new-content" class="anchor" href="#generating-new-content"><span class="octicon octicon-link"></span></a>Generating new content</h1>
+
+<p>Of course, RMVC makes it easy for you to generate new models, views and controllers. It will take care of almost all the <code>require</code>s. </p>
+
+<p><strong>Important!</strong> Make sure to be at the root of your project, not at the app subdirectory or any other one! That's because RMVC looks for the <code>.rmvc</code> directory to make sure you're in an actual project, and that directory is on the root.</p>
+
+<p><strong>Important!</strong> Make sure to <strong>not capitalize</strong> the names of the models/views/controllers when generating them. To avoid conflicts, it's better to write them in lowercase. This will be prevented in newer releases.</p>
+
+<h3>
+<a name="models" class="anchor" href="#models"><span class="octicon octicon-link"></span></a>Models</h3>
+
+<p>Models are the most simple component to create, since they're void by default. Use this command:</p>
+
+<pre><code>$ rmvc generate model mylovelymodel
+</code></pre>
+
+<p>This will create the file <code>app/models/mylovelymodel.rb</code>. Following the conventions, it will add a <code>require</code> statement to include a controller also named <code>mylovelymodel</code> (<code>app/controllers/mylovelymodel_controller.rb</code>). Keep in mind that it will <strong>NOT</strong> create the controller too, so you're free to change the <code>require</code> line of the model to "link" it to another controller. But we strongly recommend to follow the conventions!</p>
+
+<p>The class of the model will be named <code>MylovelymodelModel</code>.</p>
+
+<h3>
+<a name="views" class="anchor" href="#views"><span class="octicon octicon-link"></span></a>Views</h3>
+
+<p>This ones are a bit more complicated. You need to specify to which controller is any view. Keep in mind that, unlike Rails, there can't be two views with the same name. That's because RMVC is <strong>simple</strong>. So you can't have a view <code>main</code> for one controller and a view <code>main</code> for another controller. Use this command:</p>
+
+<pre><code>$ rmvc generate view intro sudokusolver
+</code></pre>
+
+<p>This one will create a file at <code>app/views/intro.rb</code>, with a <code>require</code> statement "linking" to <code>app/controllers/sudokusolver_controller.rb</code>. Its class will be named <code>IntroView</code> with the default method <code>load</code>. </p>
+
+<h3>
+<a name="controllers" class="anchor" href="#controllers"><span class="octicon octicon-link"></span></a>Controllers</h3>
+
+<p>These are the most complicated! Use this command:</p>
+
+<pre><code>$ rmvc generate controller sudokusolver
+</code></pre>
+
+<p>And that's basically it! This creates a file <code>app/controllers/sudokusolver_controller.rb</code>. It assumes the following things:</p>
+
+<ul>
+<li>You'll be using a model named <code>sudokusolver</code> (<code>app/models/sudokusolver.rb</code>), whose class is <code>SudokusolverModel</code>. So it adds a <code>require</code> statement for that.</li>
+<li>You'll be using a view named <code>sudokusolver</code> (<code>app/views/sudokusolver.rb</code>), whose class is <code>SudokusolverView</code>. So it adds a <code>require</code> statement for that, <strong>AND</strong> it calls the <code>load</code> procedure of that view (<code>SudokusolverView.load</code>) at its <code>main</code> procedure.</li>
+</ul><p>That's how it should be following the conventions, but usually you won't really agree with that view if you're doing a big application. So you can just change everything refering to <code>sudokusolver</code> and <code>SudokusolverView</code> to <code>intro</code> and <code>IntroView</code>, to match the example above.</p>
+
+<p>Of course, another convention thing is that its class is named <code>SudokusolverController</code> and it has a <code>main</code> method calling the view. You shouldn't change that.</p>
+
+<p>There's also some code to let you add variables, as explained in the section above.</p>
+
+<h3>
+<a name="putting-everything-to-work" class="anchor" href="#putting-everything-to-work"><span class="octicon octicon-link"></span></a>Putting everything to work</h3>
+
+<p>As said above, you already have lots of <code>require</code>s in order to be able to use the model, control and view methods at all the generated files. But, that does nothing! </p>
+
+<p>Indeed. You just have to do an extra step that has to be done manually. Not because of developer's lazyness, but because RMVC is simple and usually won't do anything you don't expect to.</p>
+
+<p>It's as easy as linking to the controller at your main file (if your project is <code>sudoku</code>, say <code>sudoku.rb</code>). </p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="sb">`./app/controllers/sudokusolver_controller`</span>
+</pre></div>
+
+<p><strong>Important!</strong> The <code>./</code> before <em>app</em> is very important, don't ignore it! Also, don't add a <code>.rb</code> extension to the file, that's how require wants it!</p>
+
+<p>Now you have access to all the controller, model and view's methods from your main/executable file. But usually all what you want to do is call the <code>main</code> method of the controller, so all what you would do is:</p>
+
+<div class="highlight"><pre><span class="no">SudokusolverController</span><span class="o">.</span><span class="n">main</span>
+</pre></div>
+
+<p>Then add all the desired code under the controller, views and models. And you're done!</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
