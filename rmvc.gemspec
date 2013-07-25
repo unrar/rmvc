@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/rmvc.rb"]
   s.executables << 'rmvc'
   s.homepage    = "http://unrar.github.io/rmvc"
+  s.add_dependency('colorize')
 end
