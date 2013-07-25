@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rmvc'
-  s.version     = '1.0.0'
+  s.version     = '2.0.0'
   s.date        = '2013-07-25'
   s.summary     = 'Ruby MVC'
   s.description = 'Use MVC in your Ruby apps!'
