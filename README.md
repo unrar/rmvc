@@ -111,8 +111,7 @@ Of course, RMVC makes it easy for you to generate new models, views and controll
 
 **Important!** Make sure to be at the root of your project, not at the app subdirectory or any other one! That's because RMVC looks for the `.rmvc` directory to make sure you're in an actual project, and that directory is on the root.
 
-**Important!** Make sure to **not capitalize** the names of the models/views/controllers when generating them. To avoid conflicts, it's better to write them in lowercase. This will be prevented in newer releases.
-
+**Important!** The case issues are fixed. You can now do `generate controller TheBoss`, and it will generate a file `theboss_controller.rb` but the class name will be `TheBossController`.
 ### Models ###
 Models are the most simple component to create, since they're void by default. Use this command:
 

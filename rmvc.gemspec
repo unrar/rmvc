@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'rmvc'
-  s.version     = '2.1.2'
-  s.date        = '2013-07-25'
+  s.version     = '3.0.1'
+  s.date        = '2013-08-01'
   s.summary     = 'Ruby MVC'
   s.description = 'Use MVC in your Ruby apps!'
   s.authors     = ["Catbuntu"]

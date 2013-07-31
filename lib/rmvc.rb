@@ -74,37 +74,37 @@ module RMVC
       if (args[1] == "model") then
         puts "Generating model #{args[2]}..."
         # Create file /app/models/args[2].rb
-        if (File.exists? "app/models/#{args[2]}.rb") then
-          puts "error".red + "        File /app/models/#{args[2]}.rb already exists."
+        if (File.exists? "app/models/#{args[2].downcase}.rb") then
+          puts "error".red + "        File /app/models/#{args[2].downcase}.rb already exists."
           exit
         end
-        File.open("app/models/#{args[2]}.rb", "w") do |f|
+        File.open("app/models/#{args[2].downcase}.rb", "w") do |f|
           f.write(RMVC::Helpers.createModel(args[2]))
         end
-        puts "create".green + "        File /app/models/#{args[2]}.rb"
+        puts "create".green + "        File /app/models/#{args[2].downcase}.rb"
       elsif (args[1] == "controller")
         puts "Generating controller #{args[2]}..."
         # Create file /app/controllers/args[2]_controller.rb
-        if (File.exists? "app/controllers/#{args[2]}_controller.rb") then
-          puts "error".red + "        File /app/controller/#{args[2]}_controller.rb already exists."
+        if (File.exists? "app/controllers/#{args[2].downcase}_controller.rb") then
+          puts "error".red + "        File /app/controller/#{args[2].downcase}_controller.rb already exists."
           exit
         end
-        File.open("app/controllers/#{args[2]}_controller.rb", "w") do |f|
+        File.open("app/controllers/#{args[2].downcase}_controller.rb", "w") do |f|
           f.write(RMVC::Helpers.createController(args[2]))
         end
-        puts "create".green + "        File /app/controllers/#{args[2]}_controller.rb"
-        puts "notice".yellow + "        Remember to add a require statement to the main file of the project, to include app/controllers/#{args[2]}_controller."
+        puts "create".green + "        File /app/controllers/#{args[2].downcase}_controller.rb"
+        puts "notice".yellow + "        Remember to add a require statement to the main file of the project, to include app/controllers/#{args[2].downcase}_controller."
       elsif (args[1] == "view")
         puts "Generating view #{args[2]}..."
         # Create file /app/controllers/args[2]_controller.rb
-        if (File.exists? "app/views/#{args[2]}.rb") then
-          puts "error".red + "        File /app/views/#{args[2]}.rb already exists."
+        if (File.exists? "app/views/#{args[2].downcase}.rb") then
+          puts "error".red + "        File /app/views/#{args[2].downcase}.rb already exists."
           exit
         end
-        File.open("app/views/#{args[2]}.rb", "w") do |f|
+        File.open("app/views/#{args[2].downcase}.rb", "w") do |f|
           f.write(RMVC::Helpers.createView(args[2], args[3]))
         end
-        puts "create".green + "        File /app/views/#{args[2]}.rb"
+        puts "create".green + "        File /app/views/#{args[2].downcase}.rb"
       else
         puts "Wrong argument for generate: #{args[1]}"
         RMVC::Interface.showHelp
@@ -189,9 +189,9 @@ module RMVC
   class Helpers
     # Helper for creating a controller
     def self.createController(controllerName)
-      controllerCap = controllerName.capitalize
-        "require './app/models/#{controllerName}'
-require './app/views/#{controllerName}'
+      controllerCap = controllerName.slice(0,1).capitalize + controllerName.slice(1..-1)
+        "require './app/models/#{controllerName.downcase}'
+require './app/views/#{controllerName.downcase}'
 class #{controllerCap}Controller
   class << self
     #Add your variables here!
@@ -205,8 +205,8 @@ end\n"
     end
   # Helper for creating a view
     def self.createView(viewName, controllerName)
-      viewCap = viewName.capitalize
-"require './app/controllers/#{controllerName}_controller'
+      viewCap = viewName.slice(0,1).capitalize + viewName.slice(1..-1)
+"require './app/controllers/#{controllerName.downcase}_controller'
 class #{viewCap}View
   def self.load
     puts \"Hello, hello!\"
@@ -216,8 +216,8 @@ end\n"
 
   # Helper for creating a model
     def self.createModel(modelName)
-"require './app/controllers/#{modelName}_controller'
-class #{modelName.capitalize}Model
+"require './app/controllers/#{modelName.downcase}_controller'
+class #{modelName.slice(0,1).capitalize + modelName.slice(1..-1)}Model
 end\n"
     end
   end
