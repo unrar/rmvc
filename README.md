@@ -22,6 +22,17 @@ Now install the gem:
 ### Dependencies ###
 The only dependency of RMVC is [colorize](https://rubygems.org/gems/colorize). Rubygems should automatically install colorize for you.
 
+Using Databases
+===
+**Read this, please!** 
+At the moment there isn't an authomated way to use databases with RMVC. In further releases, some kind of `migrate`-like tool will be created.
+Besides the lack of a command for database creating, it's very easy to use one. Choose your database (we recommend SQLite3), create a `db` directory at the root of your project (for compatibility with the `migrate` future command) and create your database there.
+Then just add all the queries to the model, call them through the controller and show the results through a view.
+Remember that in all the files, the routes are relative to the main file (`project.rb`). So, the route to a file in the `db` path will be always `./db/file.db`, not relative to the file you're writing (in a model, you might think it's `../../db/file.db`, but again, it's relative to the main file).
+
+### Example ###
+An example of a project using a SQLite3 database can be find [here](https://github.com/unrar/helloworld).
+
 Create a project
 ====
 RMVC is made to be friendly to Rails developers. So, as you can guess, the only command you need to run to create 
