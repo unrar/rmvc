@@ -24,10 +24,18 @@ The only dependency of RMVC is [colorize](https://rubygems.org/gems/colorize). R
 
 Using Databases
 ===
-**Read this, please!** 
-At the moment there isn't an authomated way to use databases with RMVC. In further releases, some kind of `migrate`-like tool will be created.
-Besides the lack of a command for database creating, it's very easy to use one. Choose your database (we recommend SQLite3), create a `db` directory at the root of your project (for compatibility with the `migrate` future command) and create your database there.
-Then just add all the queries to the model, call them through the controller and show the results through a view.
+The `migrate` command is provided, which eases the database creation. After generating a migration file (see below), you have to add the queries to it, creating a `RMVC::Migration` object. Here's an example of all the methods as of v3.1:
+
+```ruby
+require 'rmvc'
+migr = RMVC::Migration.new("database_name") # Opens or creates a SQLite3 database
+migr.create_table("table_name") # Creates a void table
+migr.add_column("table_name", "column_name", :kind) # Where kind is :text, :num or a custom string (e.g. "varchar(32)")
+migr.insert("table_name", ["column_1", "column_x"], ["value_1", "value_x"]) # Adds a row to a column or more
+```
+
+
+After the database is created, you can all queries to the model, call them through the controller and show the results through a view.
 Remember that in all the files, the routes are relative to the main file (`project.rb`). So, the route to a file in the `db` path will be always `./db/file.db`, not relative to the file you're writing (in a model, you might think it's `../../db/file.db`, but again, it's relative to the main file).
 
 ### Example ###
@@ -154,6 +162,13 @@ That's how it should be following the conventions, but usually you won't really 
 Of course, another convention thing is that its class is named `SudokusolverController` and it has a `main` method calling the view. You shouldn't change that.
 
 There's also some code to let you add variables, as explained in the section above.
+
+### Migrations ###
+Before running a migration, you have to create a base migration file:
+
+    $ rmvc generate migration migration_name
+
+A file `migration_name.rb` will be created in `/app/migrations`. See above (**Using databases**) for details on migrations.
 
 ### Putting everything to work ###
 As said above, you already have lots of `require`s in order to be able to use the model, control and view methods at all the generated files. But, that does nothing! 
