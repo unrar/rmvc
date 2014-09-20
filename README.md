@@ -166,7 +166,7 @@ There's also some code to let you add variables, as explained in the section abo
 ### Migrations ###
 Before running a migration, you have to create a base migration file:
 
-    $ rmvc generate migration migration_name
+    $ rmvc generate migration migration_name database_name
 
 A file `migration_name.rb` will be created in `/app/migrations`. See above (**Using databases**) for details on migrations.
 

@@ -372,8 +372,8 @@ end\n"
     # Helper for creating a migration
     def self.createMigration(migrationName, dbName)
 "require 'rmvc'
-  m = RMVC::Migration.new(\"#{dbName}\")
-  # Insert migration commands here\n"
+m = RMVC::Migration.new(\"#{dbName}\")
+# Insert migration commands here\n"
+    end
   end
-end
 end
