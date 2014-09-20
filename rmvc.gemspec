@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'rmvc'
-  s.version     = '3.0.1'
-  s.date        = '2013-08-01'
+  s.version     = '3.1'
+  s.date        = '2014-09-20'
   s.summary     = 'Ruby MVC'
   s.description = 'Use MVC in your Ruby apps!'
   s.authors     = ["Catbuntu"]
@@ -10,5 +10,6 @@ Gem::Specification.new do |s|
   s.executables << 'rmvc'
   s.homepage    = "http://unrar.github.io/rmvc"
   s.add_dependency('colorize')
+  s.add_dependency('sqlite3')
   s.license     = "MIT"
 end
