@@ -6,6 +6,6 @@ task :install_gem do
   sh "gem install rmvc-3.2.gem"
 end
 
-task :ready => [:build_gem, :install_gem] do
+task :default => [:build_gem, :install_gem] do
   puts "All good."
 end
