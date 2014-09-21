@@ -20,7 +20,7 @@ Now install the gem:
     $ gem install rmvc-x.x.x.gem
 
 ### Dependencies ###
-The only dependency of RMVC is [colorize](https://rubygems.org/gems/colorize). Rubygems should automatically install colorize for you.
+RMVC uses [colorize](https://rubygems.org/gems/colorize) for text colorizing, and [sqlite3](https://rubygems.org/gems/sqlite3) as the default database engine. Rubygems should automatically install colorize and sqlite3 for you.
 
 Using Databases
 ------------
