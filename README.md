@@ -1,9 +1,9 @@
 Ruby MVC [![Gem Version](https://badge.fury.io/rb/rmvc.png)](http://badge.fury.io/rb/rmvc)
--------
+==========
 Ruby MVC (`rmvc`) is a gem to help you use the MVC (Model-View-Controller) architecture in all your Ruby applications. It's not limited to web applications like Rails! In fact, it's like a *Rails without Rack*.
 
 Get RMVC
-===
+-------------
 It's an official gem now! If you want the last available gem, run this:
 
     $ gem install rmvc
@@ -23,7 +23,7 @@ Now install the gem:
 The only dependency of RMVC is [colorize](https://rubygems.org/gems/colorize). Rubygems should automatically install colorize for you.
 
 Using Databases
-===
+------------
 The `migrate` command is provided, which eases the database creation. After generating a migration file (see below), you have to add the queries to it, creating a `RMVC::Migration` object. Here's an example of all the methods as of v3.1:
 
 ```ruby
@@ -42,7 +42,7 @@ Remember that in all the files, the routes are relative to the main file (`proje
 An example of a project using a SQLite3 database can be find [here](https://github.com/unrar/helloworld).
 
 Create a project
-====
+---------
 RMVC is made to be friendly to Rails developers. So, as you can guess, the only command you need to run to create 
 a new project is `new`:
 
@@ -99,7 +99,7 @@ end
 The model is void by default, just a declaration of the class `SomethingModel`.
 
 How does it work?
-===
+--------
 It's very simple. This is basically what happens:
 
 1. The method `main` of `DefaultController` is invoked. 
@@ -107,7 +107,7 @@ It's very simple. This is basically what happens:
 3. The method `load` of the `MainView` shows a message through `puts`, using a variable declared at `DefaultController`.
 
 Declaring Variables
-===
+---------
 It's very easy! Just add the variable at the `attr_accessor` statement of your controller:
 
 ```ruby
@@ -125,7 +125,7 @@ This can sound stupid, but it's useful if you want to get data from a database a
 a controller (MVC rules!).
 
 Generating new content
-===
+----------
 Of course, RMVC makes it easy for you to generate new models, views and controllers. It will take care of almost all the `require`s. 
 
 **Important!** Make sure to be at the root of your project, not at the app subdirectory or any other one! That's because RMVC looks for the `.rmvc` directory to make sure you're in an actual project, and that directory is on the root.
