@@ -34,6 +34,9 @@ migr.add_column("table_name", "column_name", :kind) # Where kind is :text, :num 
 migr.insert("table_name", ["column_1", "column_x"], ["value_1", "value_x"]) # Adds a row to a column or more
 ```
 
+You can run any migration at any time by running the following command:
+
+    $ rmvc migrate migration_name
 
 After the database is created, you can all queries to the model, call them through the controller and show the results through a view.
 Remember that in all the files, the routes are relative to the main file (`project.rb`). So, the route to a file in the `db` path will be always `./db/file.db`, not relative to the file you're writing (in a model, you might think it's `../../db/file.db`, but again, it's relative to the main file).
@@ -55,10 +58,12 @@ It will create a structure like the following:
       app/
         controllers/
           default_controller.rb
+        migrations/
         models/
           default.rb
         views/
           main.rb
+      db/
     ProjectName.rb
 
 The file the user will run is `ProjectName.rb`. It has a very simple content.
