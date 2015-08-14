@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class RMVC::Core - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Object
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-create">::create</a>
+    
+    <li ><a href="#method-c-generate">::generate</a>
+    
+    <li ><a href="#method-c-migrate">::migrate</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-RMVC::Core">
+  <h1 id="class-RMVC::Core" class="class">
+    class RMVC::Core
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Core.html">Core</a> (commands)</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(projectname)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>CMD: new [ProjectName]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/core.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">projectname</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Creating new project: #{projectname}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-comment"># Check if directory exists</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-identifier">projectname</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        Directory #{projectname} already exists.&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># Try to create it</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span>)) <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        Error while creating the directory #{projectname}&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        Directory #{projectname}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># Create directory .rmvc</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/.rmvc&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        Directory #{projectname}/.rmvc&quot;</span>
+  <span class="ruby-comment"># Create file projectname.rb</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;require &#39;./app/controllers/default_controller&#39;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;DefaultController.main\n&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File #{projectname}.rb&quot;</span>
+
+  <span class="ruby-comment"># Create directory app</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Directory /app&quot;</span>
+  <span class="ruby-comment"># Create directory app/controllers</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/controllers&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Directory /app/controllers&quot;</span>
+  <span class="ruby-comment"># Create default controller</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/controllers/default_controller.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;require &#39;./app/models/default&#39;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;require &#39;./app/views/main&#39;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;class DefaultController\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  class &lt;&lt; self\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-node">&quot;    #Add your variables here!\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;    attr_accessor :name\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  end\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  @name = \&quot;James!\&quot;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  def self.main\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;    MainView.load\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  end\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;end\n&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        File /app/controllers/default_controller.rb&quot;</span>
+  <span class="ruby-comment"># Create directory app/views</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/views&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Directory /app/views&quot;</span>
+  <span class="ruby-comment"># Create /app/views/main.rb</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/views/main.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;require &#39;./app/controllers/default_controller&#39;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;class MainView\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  def self.load\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;    puts \&quot;Hello, hello \#{DefaultController.name}!\&quot;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  end\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;end\n&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        File /app/views/main.rb&quot;</span>
+
+  <span class="ruby-comment"># Create /app/models</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/models&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Directory /app/models&quot;</span>
+  <span class="ruby-comment"># Create /app/models/default.rb</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/models/default.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;require &#39;./app/controllers/default_controller&#39;\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;class DefaultModel\n&quot;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;end\n&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        File /app/models/default.rb&quot;</span>
+
+  <span class="ruby-comment"># Create /app/migrations</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/app/migrations&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Directory /app/migrations&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Directory /db&quot;</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">projectname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/db&quot;</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;reminder&quot;</span>.<span class="ruby-identifier">yellow</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;      You have to generate a new migration if you&#39;re using a database.&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-generate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/core.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-comment"># Check if we&#39;re in a RMVC project</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-string">&quot;.rmvc&quot;</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Not a RMVC project! (missing directory .rmvc)&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;model&quot;</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Generating model #{args[2]}...&quot;</span>
+    <span class="ruby-comment"># Create file /app/models/args[2].rb</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-node">&quot;app/models/#{args[2].downcase}.rb&quot;</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/models/#{args[2].downcase}.rb already exists.&quot;</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;app/models/#{args[2].downcase}.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">RMVC</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span>.<span class="ruby-identifier">createModel</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">2</span>]))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/models/#{args[2].downcase}.rb&quot;</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;controller&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Generating controller #{args[2]}...&quot;</span>
+    <span class="ruby-comment"># Create file /app/controllers/args[2]_controller.rb</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-node">&quot;app/controllers/#{args[2].downcase}_controller.rb&quot;</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/controller/#{args[2].downcase}_controller.rb already exists.&quot;</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;app/controllers/#{args[2].downcase}_controller.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">RMVC</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span>.<span class="ruby-identifier">createController</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">2</span>]))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/controllers/#{args[2].downcase}_controller.rb&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;notice&quot;</span>.<span class="ruby-identifier">yellow</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        Remember to add a require statement to the main file of the project, to include app/controllers/#{args[2].downcase}_controller.&quot;</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;view&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Generating view #{args[2]}...&quot;</span>
+    <span class="ruby-comment"># Create file /app/controllers/args[2]_controller.rb</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-node">&quot;app/views/#{args[2].downcase}.rb&quot;</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/views/#{args[2].downcase}.rb already exists.&quot;</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;app/views/#{args[2].downcase}.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">RMVC</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span>.<span class="ruby-identifier">createView</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">args</span>[<span class="ruby-value">3</span>]))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/views/#{args[2].downcase}.rb&quot;</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;migration&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Generating migration #{args[2]}...&quot;</span>
+    <span class="ruby-comment"># Create file /app/migrations/args[2].rb</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-node">&quot;app/migrations/#{args[2].downcase}.rb&quot;</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/migrations/#{args[2].downcase}.rb already exists.&quot;</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;app/migrations/#{args[2].downcase}.rb&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">RMVC</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span>.<span class="ruby-identifier">createMigration</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">2</span>], <span class="ruby-identifier">args</span>[<span class="ruby-value">3</span>]))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;create&quot;</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        File /app/migrations/#{args[2].downcase}.rb&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Wrong argument for generate: #{args[1]}&quot;</span>
+    <span class="ruby-constant">RMVC</span><span class="ruby-operator">::</span><span class="ruby-constant">Interface</span>.<span class="ruby-identifier">showHelp</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-migrate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">migrate</span><span
+            class="method-args">(mName)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="migrate-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/core.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">migrate</span>(<span class="ruby-identifier">mName</span>)
+  <span class="ruby-comment"># Check if we&#39;re in a RMVC project</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-string">&quot;.rmvc&quot;</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;        Not a RMVC project! (missing directory .rmvc)&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Check if the migration exists</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-node">&quot;app/migrations/#{mName}.rb&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error&quot;</span>.<span class="ruby-identifier">red</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;        The migration #{mName} doesn&#39;t exist!&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Run the file</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;attempting to migrate #{mName}...&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">sta</span> = <span class="ruby-identifier">system</span> (<span class="ruby-node">&quot;ruby app/migrations/#{mName}.rb&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">sta</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{mName} migrated correctly!&quot;</span>.<span class="ruby-identifier">green</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error while migrating #{mName}&quot;</span>.<span class="ruby-identifier">red</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

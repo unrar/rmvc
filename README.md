@@ -32,6 +32,7 @@ migr = RMVC::Migration.new("database_name") # Opens or creates a SQLite3 databas
 migr.create_table("table_name") # Creates a void table
 migr.add_column("table_name", "column_name", :kind) # Where kind is :text, :num or a custom string (e.g. "varchar(32)")
 migr.insert("table_name", ["column_1", "column_x"], ["value_1", "value_x"]) # Adds a row to a column or more
+migr.drop_table("table_name") # Drops (deletes) a table
 ```
 
 You can run any migration at any time by running the following command:

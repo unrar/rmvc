@@ -35,6 +35,18 @@ module RMVC
       end
     end
 
+    # drop a table
+    def drop_table(table)
+      puts "attempting to drop table #{table}..."
+      begin
+        tt = @dbr.prepare("DROP TABLE #{table};")
+        ee = tt.execute
+        puts "table created correctly.".green
+      rescue
+        puts "error while dropping table #{table}".red
+      end
+    end
+    
     # add column
     def add_column(table, cname, type)
       if type.to_s == "text"
