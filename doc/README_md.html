@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Ruby+MVC+rdoc-image-3Ahttps-3A-2F-2Fbadge.fury.io-2Frb-2Frmvc.png+rdoc-image-3Ahttps-3A-2F-2Ftravis-ci.org-2Funrar-2Frmvc.svg-3Fbranch-3Dmaster">Ruby MVC <a href="http://badge.fury.io/rb/rmvc"><img src="https://badge.fury.io/rb/rmvc.png"></a> <a href="https://travis-ci.org/unrar/rmvc"><img src="https://travis-ci.org/unrar/rmvc.svg?branch=master"></a></a>
+    <li><a href="#label-Get+RMVC">Get RMVC</a>
+    <li><a href="#label-Dependencies">Dependencies</a>
+    <li><a href="#label-Using+Databases">Using Databases</a>
+    <li><a href="#label-Example">Example</a>
+    <li><a href="#label-Create+a+project">Create a project</a>
+    <li><a href="#label-How+does+it+work-3F">How does it work?</a>
+    <li><a href="#label-Declaring+Variables">Declaring Variables</a>
+    <li><a href="#label-Generating+new+content">Generating new content</a>
+    <li><a href="#label-Models">Models</a>
+    <li><a href="#label-Views">Views</a>
+    <li><a href="#label-Controllers">Controllers</a>
+    <li><a href="#label-Migrations">Migrations</a>
+    <li><a href="#label-Putting+everything+to+work">Putting everything to work</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./LICENSE.html">LICENSE</a>
+  
+    <li><a href="./README_md.html">README</a>
+  
+    <li><a href="./Rakefile.html">Rakefile</a>
+  
+    <li><a href="./rmvc_gemspec.html">rmvc.gemspec</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.md">
+
+<h1 id="label-Ruby+MVC+rdoc-image-3Ahttps-3A-2F-2Fbadge.fury.io-2Frb-2Frmvc.png+rdoc-image-3Ahttps-3A-2F-2Ftravis-ci.org-2Funrar-2Frmvc.svg-3Fbranch-3Dmaster">Ruby MVC <a href="http://badge.fury.io/rb/rmvc"><img src="https://badge.fury.io/rb/rmvc.png"></a> <a href="https://travis-ci.org/unrar/rmvc"><img src="https://travis-ci.org/unrar/rmvc.svg?branch=master"></a><span><a href="#label-Ruby+MVC+rdoc-image-3Ahttps-3A-2F-2Fbadge.fury.io-2Frb-2Frmvc.png+rdoc-image-3Ahttps-3A-2F-2Ftravis-ci.org-2Funrar-2Frmvc.svg-3Fbranch-3Dmaster">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>Ruby MVC (<code>rmvc</code>) is a gem to help you use the MVC
+(Model-View-Controller) architecture in all your Ruby applications.
+It&#39;s not limited to web applications like Rails! In fact, it&#39;s like
+a <em>Rails without Rack</em>.</p>
+
+<h2 id="label-Get+RMVC">Get <a href="RMVC.html">RMVC</a><span><a href="#label-Get+RMVC">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It&#39;s an official gem now! If you want the last available gem, run this:</p>
+
+<pre>$ gem install rmvc</pre>
+
+<p>Depending on your setup, you might have to prefix the command with
+<code>sudo</code>.</p>
+
+<p>If you want the last version and the gem isn&#39;t updated (look at the top
+of the <a href="README_md.html">README</a> to know what version the gem
+is), just download the sources from GitHub:</p>
+
+<pre>$ git init
+$ git clone https://github.com/unrar/rmvc.git</pre>
+
+<p>Now install the gem:</p>
+
+<pre>$ gem install rmvc-x.x.x.gem</pre>
+
+<h3 id="label-Dependencies">Dependencies<span><a href="#label-Dependencies">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="RMVC.html">RMVC</a> uses <a
+href="https://rubygems.org/gems/colorize">colorize</a> for text colorizing,
+and <a href="https://rubygems.org/gems/sqlite3">sqlite3</a> as the default
+database engine. Rubygems should automatically install colorize and sqlite3
+for you.</p>
+
+<h2 id="label-Using+Databases">Using Databases<span><a href="#label-Using+Databases">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The <code>migrate</code> command is provided, which eases the database
+creation. After generating a migration file (see below), you have to add
+the queries to it, creating a <code>RMVC::Migration</code> object.
+Here&#39;s an example of all the methods as of v3.1:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rmvc&#39;</span>
+<span class="ruby-identifier">migr</span> = <span class="ruby-constant">RMVC</span><span class="ruby-operator">::</span><span class="ruby-constant">Migration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;database_name&quot;</span>) <span class="ruby-comment"># Opens or creates a SQLite3 database</span>
+<span class="ruby-identifier">migr</span>.<span class="ruby-identifier">create_table</span>(<span class="ruby-string">&quot;table_name&quot;</span>) <span class="ruby-comment"># Creates a void table</span>
+<span class="ruby-identifier">migr</span>.<span class="ruby-identifier">add_column</span>(<span class="ruby-string">&quot;table_name&quot;</span>, <span class="ruby-string">&quot;column_name&quot;</span>, :<span class="ruby-identifier">kind</span>) <span class="ruby-comment"># Where kind is :text, :num or a custom string (e.g. &quot;varchar(32)&quot;)</span>
+<span class="ruby-identifier">migr</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-string">&quot;table_name&quot;</span>, [<span class="ruby-string">&quot;column_1&quot;</span>, <span class="ruby-string">&quot;column_x&quot;</span>], [<span class="ruby-string">&quot;value_1&quot;</span>, <span class="ruby-string">&quot;value_x&quot;</span>]) <span class="ruby-comment"># Adds a row to a column or more</span>
+</pre>
+
+<p>You can run any migration at any time by running the following command:</p>
+
+<pre>$ rmvc migrate migration_name</pre>
+
+<p>After the database is created, you can all queries to the model, call them
+through the controller and show the results through a view. Remember that
+in all the files, the routes are relative to the main file
+(<code>project.rb</code>). So, the route to a file in the <code>db</code>
+path will be always <code>./db/file.db</code>, not relative to the file
+you&#39;re writing (in a model, you might think it&#39;s
+<code>../../db/file.db</code>, but again, it&#39;s relative to the main
+file).</p>
+
+<h3 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>An example of a project using a SQLite3 database can be find <a
+href="https://github.com/unrar/helloworld">here</a>.</p>
+
+<h2 id="label-Create+a+project">Create a project<span><a href="#label-Create+a+project">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="RMVC.html">RMVC</a> is made to be friendly to Rails developers.
+So, as you can guess, the only command you need to run to create a new
+project is <code>new</code>:</p>
+
+<pre>$ rmvc new ProjectName</pre>
+
+<p>This will create all the needed files in the <code>ProjectName</code>
+subdirectory. It will create a structure like the following:</p>
+
+<pre class="ruby"><span class="ruby-constant">ProjectName</span><span class="ruby-operator">/</span>
+  <span class="ruby-identifier">app</span><span class="ruby-operator">/</span>
+    <span class="ruby-identifier">controllers</span><span class="ruby-operator">/</span>
+      <span class="ruby-identifier">default_controller</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-identifier">migrations</span><span class="ruby-operator">/</span>
+    <span class="ruby-identifier">models</span><span class="ruby-operator">/</span>
+      <span class="ruby-identifier">default</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-identifier">views</span><span class="ruby-operator">/</span>
+      <span class="ruby-identifier">main</span>.<span class="ruby-identifier">rb</span>
+  <span class="ruby-identifier">db</span><span class="ruby-operator">/</span>
+<span class="ruby-constant">ProjectName</span>.<span class="ruby-identifier">rb</span>
+</pre>
+
+<p>The file the user will run is <code>ProjectName.rb</code>. It has a very
+simple content.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;./app/controllers/default_controller&#39;</span>
+<span class="ruby-constant">DefaultController</span>.<span class="ruby-identifier">main</span>
+</pre>
+
+<p>The controller, which is the file that, obviously,
+<strong>controls</strong> everything, contains this by default:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;./app/models/default&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;./app/views/main&#39;</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">DefaultController</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+    <span class="ruby-comment"># Add your variables here!</span>
+    <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-string">&quot;James!&quot;</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">main</span>
+    <span class="ruby-constant">MainView</span>.<span class="ruby-identifier">load</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>And the contents of the view:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;./app/controllers/default_controller&#39;</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">MainView</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">load</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Hello, hello {#DefaultController.name}!&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The model is void by default, just a declaration of the class
+<code>SomethingModel</code>.</p>
+
+<h2 id="label-How+does+it+work-3F">How does it work?<span><a href="#label-How+does+it+work-3F">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It&#39;s very simple. This is basically what happens:</p>
+<ol><li>
+<p>The method <code>main</code> of <code>DefaultController</code> is invoked.</p>
+</li><li>
+<p>The method <code>main</code> of <code>DefaultController</code>, following
+the conventions, invokes the view <code>main</code>
+(<code>MainView</code>), using the method <code>load</code> as the <a
+href="RMVC.html">RMVC</a> conventions say.</p>
+</li><li>
+<p>The method <code>load</code> of the <code>MainView</code> shows a message
+through <code>puts</code>, using a variable declared at
+<code>DefaultController</code>.</p>
+</li></ol>
+
+<h2 id="label-Declaring+Variables">Declaring Variables<span><a href="#label-Declaring+Variables">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It&#39;s very easy! Just add the variable at the <code>attr_accessor</code>
+statement of your controller:</p>
+
+<pre class="ruby"><span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">onevariable</span>, :<span class="ruby-identifier">anothervariable</span>, :<span class="ruby-identifier">myvariable</span>
+</pre>
+
+<p>And declare it using an instance variable (<code>@var</code>) after the
+<code>class &lt;&lt; self</code> block.</p>
+
+<pre class="ruby"><span class="ruby-keyword">end</span>
+<span class="ruby-ivar">@onevariable</span>, <span class="ruby-ivar">@anothervariable</span>, <span class="ruby-ivar">@myvariable</span> = <span class="ruby-string">&quot;A&quot;</span>, <span class="ruby-string">&quot;B&quot;</span>, <span class="ruby-string">&quot;C&quot;</span>
+</pre>
+
+<p>This can sound stupid, but it&#39;s useful if you want to get data from a
+database and make it available for all the views under a controller (MVC
+rules!).</p>
+
+<h2 id="label-Generating+new+content">Generating new content<span><a href="#label-Generating+new+content">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Of course, <a href="RMVC.html">RMVC</a> makes it easy for you to generate
+new models, views and controllers. It will take care of almost all the
+<code>require</code>s.</p>
+
+<p><strong>Important!</strong> Make sure to be at the root of your project,
+not at the app subdirectory or any other one! That&#39;s because <a
+href="RMVC.html">RMVC</a> looks for the <code>.rmvc</code> directory to
+make sure you&#39;re in an actual project, and that directory is on the
+root.</p>
+
+<p><strong>Important!</strong> The case issues are fixed. You can now do
+<code>generate controller TheBoss</code>, and it will generate a file
+<code>theboss_controller.rb</code> but the class name will be
+<code>TheBossController</code>.</p>
+
+<h3 id="label-Models">Models<span><a href="#label-Models">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Models are the most simple component to create, since they&#39;re void by
+default. Use this command:</p>
+
+<pre>$ rmvc generate model mylovelymodel</pre>
+
+<p>This will create the file <code>app/models/mylovelymodel.rb</code>.
+Following the conventions, it will add a <code>require</code> statement to
+include a controller also named <code>mylovelymodel</code>
+(<code>app/controllers/mylovelymodel_controller.rb</code>). Keep in mind
+that it will <strong>NOT</strong> create the controller too, so you&#39;re
+free to change the <code>require</code> line of the model to “link” it to
+another controller. But we strongly recommend to follow the conventions!</p>
+
+<p>The class of the model will be named <code>MylovelymodelModel</code>.</p>
+
+<h3 id="label-Views">Views<span><a href="#label-Views">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>This ones are a bit more complicated. You need to specify to which
+controller is any view. Keep in mind that, unlike Rails, there can&#39;t be
+two views with the same name. That&#39;s because <a
+href="RMVC.html">RMVC</a> is <strong>simple</strong>. So you can&#39;t have
+a view <code>main</code> for one controller and a view <code>main</code>
+for another controller. Use this command:</p>
+
+<pre>$ rmvc generate view intro sudokusolver</pre>
+
+<p>This one will create a file at <code>app/views/intro.rb</code>, with a
+<code>require</code> statement “linking” to
+<code>app/controllers/sudokusolver_controller.rb</code>. Its class will be
+named <code>IntroView</code> with the default method <code>load</code>.</p>
+
+<h3 id="label-Controllers">Controllers<span><a href="#label-Controllers">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>These are the most complicated! Use this command:</p>
+
+<pre>$ rmvc generate controller sudokusolver</pre>
+
+<p>And that&#39;s basically it! This creates a file
+<code>app/controllers/sudokusolver_controller.rb</code>. It assumes the
+following things:</p>
+<ul><li>
+<p>You&#39;ll be using a model named <code>sudokusolver</code>
+(<code>app/models/sudokusolver.rb</code>), whose class is
+<code>SudokusolverModel</code>. So it adds a <code>require</code> statement
+for that.</p>
+</li><li>
+<p>You&#39;ll be using a view named <code>sudokusolver</code>
+(<code>app/views/sudokusolver.rb</code>), whose class is
+<code>SudokusolverView</code>. So it adds a <code>require</code> statement
+for that, <strong>AND</strong> it calls the <code>load</code> procedure of
+that view (<code>SudokusolverView.load</code>) at its <code>main</code>
+procedure.</p>
+</li></ul>
+
+<p>That&#39;s how it should be following the conventions, but usually you
+won&#39;t really agree with that view if you&#39;re doing a big
+application. So you can just change everything refering to
+<code>sudokusolver</code> and <code>SudokusolverView</code> to
+<code>intro</code> and <code>IntroView</code>, to match the example above.</p>
+
+<p>Of course, another convention thing is that its class is named
+<code>SudokusolverController</code> and it has a <code>main</code> method
+calling the view. You shouldn&#39;t change that.</p>
+
+<p>There&#39;s also some code to let you add variables, as explained in the
+section above.</p>
+
+<h3 id="label-Migrations">Migrations<span><a href="#label-Migrations">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Before running a migration, you have to create a base migration file:</p>
+
+<pre>$ rmvc generate migration migration_name database_name</pre>
+
+<p>A file <code>migration_name.rb</code> will be created in
+<code>/app/migrations</code>. See above (<strong>Using databases</strong>)
+for details on migrations.</p>
+
+<h3 id="label-Putting+everything+to+work">Putting everything to work<span><a href="#label-Putting+everything+to+work">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>As said above, you already have lots of <code>require</code>s in order to
+be able to use the model, control and view methods at all the generated
+files. But, that does nothing!</p>
+
+<p>Indeed. You just have to do an extra step that has to be done manually. Not
+because of developer&#39;s lazyness, but because <a
+href="RMVC.html">RMVC</a> is simple and usually won&#39;t do anything you
+don&#39;t expect to.</p>
+
+<p>It&#39;s as easy as linking to the controller at your main file (if your
+project is <code>sudoku</code>, say <code>sudoku.rb</code>).</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-value">%x`./app/controllers/sudokusolver_controller`</span>
+</pre>
+
+<p><strong>Important!</strong> The <code>./</code> before <em>app</em> is very
+important, don&#39;t ignore it! Also, don&#39;t add a <code>.rb</code>
+extension to the file, that&#39;s how require wants it!</p>
+
+<p>Now you have access to all the controller, model and view&#39;s methods
+from your main/executable file. But usually all what you want to do is call
+the <code>main</code> method of the controller, so all what you would do
+is:</p>
+
+<pre class="ruby"><span class="ruby-constant">SudokusolverController</span>.<span class="ruby-identifier">main</span>
+</pre>
+
+<p>Then add all the desired code under the controller, views and models. And
+you&#39;re done!</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

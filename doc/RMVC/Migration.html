@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class RMVC::Migration - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Object
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-add_column">#add_column</a>
+    
+    <li ><a href="#method-i-create_table">#create_table</a>
+    
+    <li ><a href="#method-i-insert">#insert</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-RMVC::Migration">
+  <h1 id="class-RMVC::Migration" class="class">
+    class RMVC::Migration
+  </h1>
+
+  <section class="description">
+    
+<p>Migration: an object to assist database creation</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-dbr" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">dbr</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Init (create or open database)</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(database)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/migrations.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">database</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;./db/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">database</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.db&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;database #{database} already exists. opening...&quot;</span>.<span class="ruby-identifier">green</span>
+    <span class="ruby-ivar">@dbr</span> = <span class="ruby-constant">SQLite3</span><span class="ruby-operator">::</span><span class="ruby-constant">Database</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;./db/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">database</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.db&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;database #{database} not found. creating database...&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-ivar">@dbr</span> = <span class="ruby-constant">SQLite3</span><span class="ruby-operator">::</span><span class="ruby-constant">Database</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;./db/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">database</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.db&quot;</span>)
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;database #{database} successfully created.&quot;</span>.<span class="ruby-identifier">green</span>
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;couldn&#39;t create database. aborting...&quot;</span>.<span class="ruby-identifier">red</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_column" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_column</span><span
+            class="method-args">(table, cname, type)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>add column</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_column-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/migrations.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_column</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">cname</span>, <span class="ruby-identifier">type</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;text&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;attempting to create text column #{cname} at #{table}...&quot;</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">tt</span> = <span class="ruby-ivar">@dbr</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-node">&quot;ALTER TABLE #{table} ADD #{cname} text;&quot;</span>)
+      <span class="ruby-identifier">ee</span> = <span class="ruby-identifier">tt</span>.<span class="ruby-identifier">execute</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;column correctly added!&quot;</span>.<span class="ruby-identifier">green</span>
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error while adding column #{cname} to #{table}&quot;</span>.<span class="ruby-identifier">red</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;num&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;attempting to create numerical column #{cname} at #{table}...&quot;</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">tt</span> = <span class="ruby-ivar">@dbr</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-node">&quot;ALTER TABLE #{table} ADD #{cname} int;&quot;</span>)
+      <span class="ruby-identifier">ee</span> = <span class="ruby-identifier">tt</span>.<span class="ruby-identifier">execute</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;column correctly added!&quot;</span>.<span class="ruby-identifier">green</span>
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error while adding column #{cname} to #{table}&quot;</span>.<span class="ruby-identifier">red</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;attempting to create custom (#{type.to_s}) column #{cname} at #{table}...&quot;</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">tt</span> = <span class="ruby-ivar">@dbr</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-node">&quot;ALTER TABLE #{table} ADD #{cname} #{type.to_s};&quot;</span>)
+      <span class="ruby-identifier">ee</span> = <span class="ruby-identifier">tt</span>.<span class="ruby-identifier">execute</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;column correctly added!&quot;</span>.<span class="ruby-identifier">green</span>
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error while adding column #{cname} to #{table}&quot;</span>.<span class="ruby-identifier">red</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>     
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_table</span><span
+            class="method-args">(table)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>create table</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_table-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/migrations.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_table</span>(<span class="ruby-identifier">table</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;attempting to create table #{table}...&quot;</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">tt</span> = <span class="ruby-ivar">@dbr</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-node">&quot;CREATE TABLE #{table}(id int auto_increment);&quot;</span>)
+    <span class="ruby-identifier">ee</span> = <span class="ruby-identifier">tt</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;table created correctly.&quot;</span>.<span class="ruby-identifier">green</span>
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error while creating table #{table}&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-insert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert</span><span
+            class="method-args">(table, columns, values)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Insert values into table WHERE columns = [“column1”, “column2”] AND values
+= [“value1”, “value2”]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="insert-source">
+            <pre><span class="ruby-comment"># File lib/rmvc/migrations.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">insert</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">columns</span>, <span class="ruby-identifier">values</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;attempting to insert values into #{table}...&quot;</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">nvalues</span> = []
+      <span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>
+          <span class="ruby-identifier">nvalues</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\&quot;&quot;</span> 
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">nvalues</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">v</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">tt</span> = <span class="ruby-ivar">@dbr</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-node">&quot;INSERT INTO #{table}(&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;) VALUES(&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nvalues</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;);&quot;</span>)
+      <span class="ruby-identifier">ee</span> = <span class="ruby-identifier">tt</span>.<span class="ruby-identifier">execute</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;values correctly added!&quot;</span>.<span class="ruby-identifier">green</span>
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;error while inserting values&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
