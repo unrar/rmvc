@@ -1,17 +1,29 @@
 #!/usr/bin/env ruby
 require 'colorize'
 require 'sqlite3'
+
+# We're in the RMVC module.
 module RMVC
-# Migration: an object to assist database creation
+
+  # Class: Migration
+  # Contains a RMVC migration
   class Migration
-    # Init (create or open database)
+
+    # @dbr: resource referencing to the database connection
     attr_accessor :dbr
+
+    # Method: constructor
+    # Arguments: database (string) - name of the migration's database
+    # Starts the @dbr connection, creates it if the file doesn't exist
     def initialize(database)
+
       if File.exists?("./db/" + database + ".db")
         puts "database #{database} already exists. opening...".green
         @dbr = SQLite3::Database.open("./db/" + database + ".db")
+
       else
         puts "database #{database} not found. creating database...".yellow
+
         begin
           @dbr = SQLite3::Database.new("./db/" + database + ".db")
           puts "database #{database} successfully created.".green
@@ -19,10 +31,13 @@ module RMVC
           puts "couldn't create database. aborting...".red
           exit
         end
+
       end
     end
 
-    # create table
+    # Method: create_table
+    # Arguments: table (string)
+    # Creates a table in the database
     def create_table(table)
       puts "attempting to create table #{table}..."
       begin
@@ -35,7 +50,9 @@ module RMVC
       end
     end
 
-    # drop a table
+    # Method: drop_table
+    # Arguments: table (string)
+    # Removes a table of the database
     def drop_table(table)
       puts "attempting to drop table #{table}..."
       begin
@@ -47,7 +64,10 @@ module RMVC
       end
     end
     
-    # add column
+    # Method: add_column
+    # Arguments: table(string) - table name
+    #            cname(string) - name of the column
+    #            type(:text, :num, string) - type of the column
     def add_column(table, cname, type)
       if type.to_s == "text"
         puts "attempting to create text column #{cname} at #{table}..."
@@ -59,6 +79,7 @@ module RMVC
           puts "error while adding column #{cname} to #{table}".red
           exit
         end
+
       elsif type.to_s == "num"
         puts "attempting to create numerical column #{cname} at #{table}..."
         begin
@@ -69,6 +90,7 @@ module RMVC
           puts "error while adding column #{cname} to #{table}".red
           exit
         end
+
       else
         puts "attempting to create custom (#{type.to_s}) column #{cname} at #{table}..."
         begin
@@ -82,8 +104,10 @@ module RMVC
       end
     end 
 
-    # Insert values into table WHERE columns = ["column1", "column2"]
-    # AND values = ["value1", "value2"]
+    # Method: insert
+    # Arguments: table(string) - table name
+    #            columns([string, ]) - columns where data will be inserted
+    #            values([string|int|other, ]) - values to be inserted 
     def insert(table, columns, values)
       puts "attempting to insert values into #{table}..."
         begin

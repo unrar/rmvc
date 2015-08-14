@@ -24,7 +24,7 @@ RMVC uses [colorize](https://rubygems.org/gems/colorize) for text colorizing, an
 
 Using Databases
 ------------
-The `migrate` command is provided, which eases the database creation. After generating a migration file (see below), you have to add the queries to it, creating a `RMVC::Migration` object. Here's an example of all the methods as of v3.1:
+The `migrate` command is provided, which eases the database creation. After generating a migration file (see below), you have to add the queries to it, creating a `RMVC::Migration` object. Here's an example of all the methods as of v3.2.2:
 
 ```ruby
 require 'rmvc'
@@ -40,6 +40,7 @@ You can run any migration at any time by running the following command:
     $ rmvc migrate migration_name
 
 After the database is created, you can all queries to the model, call them through the controller and show the results through a view.
+
 Remember that in all the files, the routes are relative to the main file (`project.rb`). So, the route to a file in the `db` path will be always `./db/file.db`, not relative to the file you're writing (in a model, you might think it's `../../db/file.db`, but again, it's relative to the main file).
 
 ### Example ###
@@ -174,7 +175,7 @@ Before running a migration, you have to create a base migration file:
 
     $ rmvc generate migration migration_name database_name
 
-A file `migration_name.rb` will be created in `/app/migrations`. See above (**Using databases**) for details on migrations.
+A file `migration_name.rb` will be created in `/app/migrations`. See above ([Using databases](#using-databases)) for details on migrations.
 
 ### Putting everything to work ###
 As said above, you already have lots of `require`s in order to be able to use the model, control and view methods at all the generated files. But, that does nothing! 
