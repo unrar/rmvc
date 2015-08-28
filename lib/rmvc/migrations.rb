@@ -41,7 +41,7 @@ module RMVC
     def create_table(table)
       puts "attempting to create table #{table}..."
       begin
-        tt = @dbr.prepare("CREATE TABLE #{table}(id int auto_increment);")
+        tt = @dbr.prepare("CREATE TABLE #{table}(id INTEGER PRIMARY KEY);")
         ee = tt.execute
         puts "table created correctly.".green
       rescue

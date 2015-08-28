@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'rmvc'
-  s.version     = '3.2.2'
-  s.date        = '2015-08-14'
+  s.version     = '3.2.3'
+  s.date        = '2015-08-28'
   s.summary     = 'Ruby MVC'
   s.description = 'Use MVC in your Ruby apps!'
   s.authors     = ["unrar"]
