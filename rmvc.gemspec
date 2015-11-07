@@ -11,5 +11,5 @@ Gem::Specification.new do |s|
   s.homepage    = "http://unrar.github.io/rmvc"
   s.add_runtime_dependency 'colorize', '~> 0'
   s.add_runtime_dependency 'sqlite3', '~> 0'
-  s.license     = "MIT"
+  s.license     = "TPOL"
 end
